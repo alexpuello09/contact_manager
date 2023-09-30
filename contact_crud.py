@@ -11,10 +11,12 @@ contacts = [
         }
             ]
 
+#Request the list of contacts 
 @app.route("/contact", methods = ["GET"])
 def request_contact():
     return contacts
 
+#Create a contact
 @app.route("/contact", methods = ["POST"])
 def create_contact():
     data_contact = request.get_json()
@@ -28,6 +30,7 @@ def create_contact():
     contacts.append(new_contact)
     return "Contact created successfully"
 
+#Update a contact
 @app.route("/contact/<int:id_contact>", methods = ["PUT"])
 def update_contact(id_contact):
     data_updated = request.get_json()
@@ -41,6 +44,7 @@ def update_contact(id_contact):
     return f"Contact with id {id_contact} not found"
 
 
+#Delete a contact
 @app.route("/contact/<int:id_delete>", methods = ["DELETE"])
 def delete_contact(id_delete):
     for contact_del in contacts:
